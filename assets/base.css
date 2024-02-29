@@ -1249,7 +1249,6 @@ button.shopify-payment-button__button--unbranded {
   appearance: none;
   background-color: rgba(var(--color-button), var(--alpha-button-background));
 }
-
 .button:before,
 .shopify-challenge__button:before,
 .customer button:before,
@@ -1294,6 +1293,27 @@ button.shopify-payment-button__button--unbranded {
   box-shadow: 0 0 0 calc(var(--buttons-border-width) + var(--border-offset))
       rgba(var(--color-button-text), var(--border-opacity)),
     0 0 0 calc(var(--buttons-border-width) + 1px) rgba(var(--color-button), var(--alpha-button-background));
+}
+
+.customBtn {
+  border-radius: 25px;
+  border: transparent solid 1px;
+}
+
+.customBtn:before,
+.customBtn::after {
+  border-radius: 25px;
+  border: transparent solid 1px;
+  box-shadow: none !important;
+}
+
+.customBtn:hover,
+.customBtn:hover .customBtn:before,
+.customBtn:hover .customBtn::after {
+  border-radius: 25px;
+  background-color: transparent;
+  border: black solid 1px;
+  color: black !important;
 }
 
 .button--secondary:after {
@@ -2321,13 +2341,25 @@ product-info .loading__spinner:not(.hidden) ~ *,
 }
 
 @keyframes translateAnnouncementSlideIn {
-  0% {opacity: 0; transform: translateX(var(--announcement-translate-from))}
-  100% {opacity: 1; transform: translateX(0)}
+  0% {
+    opacity: 0;
+    transform: translateX(var(--announcement-translate-from));
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 @keyframes translateAnnouncementSlideOut {
-  0% {opacity: 1; transform: translateX(0)}
-  100% {opacity: 0; transform: translateX(var(--announcement-translate-to))}
+  0% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(var(--announcement-translate-to));
+  }
 }
 
 /* section-header */
