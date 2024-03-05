@@ -118,6 +118,7 @@
   font: inherit;
   border-radius: 25px;
   border: transparent solid 1px;
+  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -159,6 +160,11 @@
   }
 
   .banner-text-wrapper .banner__buttons {
+    display: flex;
+    justify-content: center;
     width: 100%;
+  }
+  .video-section__media.global-media-settings--full-width {
+    padding-bottom: 4rem !important;
   }
 }

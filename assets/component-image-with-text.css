@@ -415,3 +415,36 @@
     row-gap: var(--grid-desktop-vertical-spacing);
   }
 }
+
+.button--primary_custom {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  padding: 0 3rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: rgb(var(--color-button-text));
+  transition: box-shadow var(--duration-short) ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: rgba(var(--color-button), var(--alpha-button-background));
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  padding: 0 3rem;
+  cursor: pointer;
+  font: inherit;
+  border-radius: 25px;
+  border: transparent solid 1px;
+  min-height: calc(4.5rem + var(--buttons-border-width) * 2);
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .mobileFullWidth {
+    padding: 0 !important;
+  }
+}
