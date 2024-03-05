@@ -95,6 +95,13 @@
         style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
       {% endif %}
     >
+      <video playsinline="playsinline" autoplay="autoplay" loop="loop" muted="muted" preload="metadata" poster="{{
+        poster
+        | asset_url
+      }}">
+        <source src="{{ video_url }}" type="{{ video_mime_type }}">
+        <img src="{{ poster | asset_url }}" alt="{{ alt }}"  width="" height="" />
+      </video>
       <div class="banner-text-wrapper">
         <div>
           {%- for block in section.blocks -%}
@@ -126,13 +133,6 @@
           {%- endfor -%}
         </div>
       </div>
-      <video playsinline="playsinline" autoplay="autoplay" loop="loop" muted="muted" preload="metadata" poster="{{
-        poster
-        | asset_url
-      }}">
-        <source src="{{ video_url }}" type="{{ video_mime_type }}">
-        <img src="{{ poster | asset_url }}" alt="{{ alt }}"  width="" height="" />
-      </video>
     </deferred-media>
   </div>
 </div>

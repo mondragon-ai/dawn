@@ -119,3 +119,46 @@
   border-radius: 25px;
   border: transparent solid 1px;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+  .video-section__media video {
+    position: relative;
+  }
+  .banner-text-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+  }
+
+  .banner-text-wrapper > div {
+    position: relative;
+    width: 100%;
+    height: auto;
+    z-index: 5;
+    /* bottom: -100%; */
+  }
+
+  .banner-text-wrapper .banner__heading,
+  .banner-text-wrapper .inline-richtext {
+    display: none;
+  }
+
+  .banner-text-wrapper .banner__text,
+  .banner-text-wrapper .rte {
+    width: 100%;
+    height: auto;
+    color: #000000;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 24px;
+    text-align: center;
+    margin: 1rem 0;
+    padding: 0.5rem 3rem;
+    max-width: 100%;
+  }
+
+  .banner-text-wrapper .banner__buttons {
+    width: 100%;
+  }
+}
