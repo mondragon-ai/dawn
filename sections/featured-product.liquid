@@ -57,9 +57,9 @@
 {%- endif -%}
 
 <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
-    <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if  section.settings.main_image == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}">
+  <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}" style="max-width: none;">
+    <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if  section.settings.main_image == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}" style="max-width: none;width: 100%;">
+      <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}" style="padding: 2rem;">
         <media-gallery
           id="MediaGallery-{{ section.id }}"
           role="region"
@@ -96,7 +96,7 @@
           </div>
         </media-gallery>
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" style="padding: 2rem;">
         <product-info
           id="ProductInfo-{{ section.id }}"
           class="product__info-container"
@@ -111,85 +111,85 @@
                 {% render block %}
               {%- when 'text' -%}
                 <p
-                  class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                  class="product__text inline-richtext caption-with-letter-spacing"
                   {{ block.shopify_attributes }}
                 >
-                  {{- block.settings.text -}}
                 </p>
                 <div class="startTable">
                     <div class="item">
                         <div class="top">
-                            <span class="title">OH Container</span>
-                            <span>
-                                $69.00 / Mo
+                            <span class="title">
+                              {{- block.settings.product_title -}}
+                            </span>
+                            <span>        
+                              {{- block.settings.product_price -}}
                             </span>
                         </div>
                     </div>
                     <h6>First Time Purchase Includes: </h6>
                     <div class="item">
                         <div class="top">
-                            <span class="title">Welcome Kit</span>
+                            <span class="title">{{- block.settings.line_one -}}</span>
                             <span>
                                 <p>
-                                    $21.00
+                                    {{- block.settings.line_price_one | money -}}
                                     <span></span>
                                 </p>
                                 &nbsp;
-                                FREE
+                                <b>FREE</b>
                             </span>
                         </div>
-                        <p class="subTitle">OH Shaker, Spoon, Stickers</p>
+                        <p class="subTitle">{{- block.settings.line_sub_one -}}</p>
                     </div>
                     <div class="item">
                         <div class="top">
-                            <span class="title">OH Travel Packs (5 count)</span>
+                            <span class="title">{{- block.settings.line_two -}}</span>
                             <span>
                                 <p>
-                                    $18.90
+                                    {{- block.settings.line_price_two | money -}}
                                     <span></span>
                                 </p>
                                 &nbsp;
-                                FREE
+                                <b>FREE</b>
                             </span>
                         </div>
-                        <p class="subTitle">5 Individial Servings OTG</p>
+                        <p class="subTitle">{{- block.settings.line_sub_two -}}</p>
                     </div>
                     <div class="item">
                         <div class="top">
-                            <span class="title">60 day challenge</span>
+                            <span class="title">{{- block.settings.line_three -}}</span>
                             <span>
                                 <p>
-                                    $20.00 / Mo
+                                    {{- block.settings.line_price_three | money -}}
                                     <span></span>
                                 </p>
                                 &nbsp;
-                                FREE
+                                <b>FREE</b>
                             </span>
                         </div>
-                        <p class="subTitle">Content to accompany your health journey</p>
+                        <p class="subTitle">{{- block.settings.line_sub_three -}}</p>
                     </div>
                     <div class="item total">
                         <div class="top">
                             <span class="title">Total</span>
                             <span>
                                 <p>
-                                    $128.90
+                                    {{- block.settings.total_value | money -}}
                                     <span></span>
                                 </p>
                                 &nbsp;
-                                $69.00 / Mo
+                                {{- block.settings.product_price -}}
                             </span>
                         </div>
                     </div>
                 </div>
               {%- when 'title' -%}
-                <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
-                  {%- if section.settings.main_image != blank -%}
-                    "TEST"
-                  {%- else -%}
-                    {{ 'onboarding.product_title' | t }}
-                  {%- endif -%}
+                <h2 class="image-with-text__heading inline-richtext h1" style="text-align: center; margin-bottom: 2rem;">
+                  {{ block.settings.header_title }}
                 </h2>
+                <h4 class="product__title h2" {{ block.shopify_attributes }}>
+                  {{ block.settings.header_subtitle }}
+                </h4>
               {%- when 'button' -%}
                 {%- if block.settings.learn_more  != blank -%}
                   <a
@@ -263,7 +263,6 @@
         </div>
       {%- endif -%}
     </div>
-    {% render 'product-media-modal', product: product, variant_images: media_to_render %}
   </div>
 </section>
 
@@ -320,47 +319,75 @@
       "settings": [
         {
           "type": "inline_richtext",
-          "id": "text",
-          "default": "Text block",
-          "label": "t:sections.featured-product.blocks.text.settings.text.label"
+          "id": "product_title",
+          "default": "Product Title",
+          "label": "Product Title"
         },
         {
           "type": "inline_richtext",
-          "id": "text_one",
-          "default": "Text block",
-          "label": "t:sections.featured-product.blocks.text.settings.text.label"
+          "id": "product_price",
+          "default": "Product Price",
+          "label": "Product Price"
         },
         {
           "type": "inline_richtext",
-          "id": "text_two",
-          "default": "Text block",
-          "label": "t:sections.featured-product.blocks.text.settings.text.label"
+          "id": "line_one",
+          "default": "Line Item One Title",
+          "label": "Line Item One Title"
         },
         {
           "type": "inline_richtext",
-          "id": "text_three",
-          "default": "Text block",
-          "label": "t:sections.featured-product.blocks.text.settings.text.label"
+          "id": "line_sub_one",
+          "default": "Line Item One - Details",
+          "label": "Line Item One - Details"
         },
         {
-          "type": "select",
-          "id": "text_style",
-          "options": [
-            {
-              "value": "body",
-              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__1.label"
-            },
-            {
-              "value": "subtitle",
-              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__2.label"
-            },
-            {
-              "value": "uppercase",
-              "label": "t:sections.featured-product.blocks.text.settings.text_style.options__3.label"
-            }
-          ],
-          "default": "body",
-          "label": "t:sections.featured-product.blocks.text.settings.text_style.label"
+          "type": "number",
+          "id": "line_price_one",
+          "label": "Line Item One - Price",
+          "default": 2000
+        },
+        {
+          "type": "inline_richtext",
+          "id": "line_two",
+          "default": "Text block",
+          "label": "Line Item Two - Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "line_sub_two",
+          "default": "Text block",
+          "label": "Line Item Two - Details"
+        },
+        {
+          "type": "number",
+          "id": "line_price_two",
+          "label": "Line Item Two - Price",
+          "default": 2000
+        },
+        {
+          "type": "inline_richtext",
+          "id": "line_three",
+          "default": "Text block",
+          "label": "Line Item Three - Title"
+        },
+        {
+          "type": "inline_richtext",
+          "id": "line_sub_three",
+          "default": "Text block",
+          "label": "Line Item Three - Details"
+        },
+        {
+          "type": "number",
+          "id": "line_price_three",
+          "label": "Line Item Three - Price",
+          "default": 2000
+        },
+        {
+          "type": "number",
+          "id": "total_value",
+          "label": "Total Value",
+          "default": 2000
         }
       ]
     },
@@ -369,6 +396,12 @@
       "name": "t:sections.featured-product.blocks.title.name",
       "limit": 1,
       "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "header_title",
+          "default": "Header",
+          "label": "Header"
+        },
         {
           "type": "select",
           "id": "heading_size",
@@ -401,7 +434,7 @@
           "id": "learn_more",
           "label": "Learn More link"
         }
-      ]
+      ] 
     },
     {
       "type": "custom_liquid",
@@ -412,17 +445,6 @@
           "id": "custom_liquid",
           "label": "t:sections.custom-liquid.settings.custom_liquid.label",
           "info": "t:sections.custom-liquid.settings.custom_liquid.info"
-        }
-      ]
-    },
-    {
-      "type": "rating",
-      "name": "t:sections.featured-product.blocks.rating.name",
-      "limit": 1,
-      "settings": [
-        {
-          "type": "paragraph",
-          "content": "t:sections.featured-product.blocks.rating.settings.paragraph.content"
         }
       ]
     },
@@ -1191,11 +1213,7 @@
           "type": "title"
         },
         {
-          "type": "text",
-          "settings": {
-            "text": "hello",
-            "text_style": "uppercase"
-          }
+          "type": "text"
         },
         {
           "type": "button"
