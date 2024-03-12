@@ -49,9 +49,7 @@
             {% endfor %}
           </div>
           <ul>
-            {% if section.settings.showDesktopHelpText %}
-              <h6>OH Helps With</h6>
-            {% endif %}
+            <h6>{{ section.settings.subtitle }}</h6>
 
             {% comment %} ON HOVER SHOW THE MATCHING BLOCK ID IMAGE {% endcomment %}
             {%- for block in section.blocks -%}
@@ -120,6 +118,12 @@
       "type": "richtext",
       "id": "paragraph",
       "default": "<p>Text to describe the main benefits listed out</p>",
+      "label": "t:sections.image-with-text.blocks.text.settings.text.label"
+    },
+    {
+      "type": "richtext",
+      "id": "subtitle",
+      "default": "<p>Helps With</p>",
       "label": "t:sections.image-with-text.blocks.text.settings.text.label"
     },
     {

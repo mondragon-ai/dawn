@@ -527,6 +527,17 @@
   z-index: 10;
 }
 
+.benefits-img ul h6 {
+  width: 100%;
+  text-align: left;
+  color: #00562b5e;
+  padding: 1rem 0;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 22px;
+  margin: 0;
+}
+
 .benefits-img ul li,
 .benefits-img ul li p {
   list-style: none;
