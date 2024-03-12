@@ -25,7 +25,6 @@
 <script src="{{ 'price-per-item.js' | asset_url }}" defer="defer"></script>
 
 {%- liquid
-
   if section.settings.media_size == 'large'
     assign media_width = 0.65
   elsif section.settings.media_size == 'medium'
@@ -57,9 +56,18 @@
 {%- endif -%}
 
 <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
-  <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}" style="max-width: none;">
-    <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if  section.settings.main_image == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}" style="max-width: none;width: 100%;">
-      <div class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}" style="padding: 2rem;">
+  <div
+    class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}"
+    style="max-width: none;"
+  >
+    <div
+      class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if  section.settings.main_image == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}"
+      style="max-width: none;width: 100%;"
+    >
+      <div
+        class="grid__item product__media-wrapper{% if section.settings.media_position == 'right' %} medium-hide large-up-hide{% endif %}"
+        style="padding: 2rem;"
+      >
         <media-gallery
           id="MediaGallery-{{ section.id }}"
           role="region"
@@ -96,7 +104,10 @@
           </div>
         </media-gallery>
       </div>
-      <div class="product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}" style="padding: 2rem;">
+      <div
+        class="product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        style="padding: 2rem;"
+      >
         <product-info
           id="ProductInfo-{{ section.id }}"
           class="product__info-container"
@@ -113,85 +124,87 @@
                 <p
                   class="product__text inline-richtext caption-with-letter-spacing"
                   {{ block.shopify_attributes }}
-                >
-                </p>
+                ></p>
                 <div class="startTable">
-                    <div class="item">
-                        <div class="top">
-                            <span class="title">
-                              {{- block.settings.product_title -}}
-                            </span>
-                            <span>        
-                              {{- block.settings.product_price -}}
-                            </span>
-                        </div>
+                  <div class="item">
+                    <div class="top">
+                      <span class="title">
+                        {{- block.settings.product_title -}}
+                      </span>
+                      <span>
+                        {{- block.settings.product_price -}}
+                      </span>
                     </div>
-                    <h6>First Time Purchase Includes: </h6>
-                    <div class="item">
-                        <div class="top">
-                            <span class="title">{{- block.settings.line_one -}}</span>
-                            <span>
-                                <p>
-                                    {{- block.settings.line_price_one | money -}}
-                                    <span></span>
-                                </p>
-                                &nbsp;
-                                <b>FREE</b>
-                            </span>
-                        </div>
-                        <p class="subTitle">{{- block.settings.line_sub_one -}}</p>
+                  </div>
+                  <h6>First Time Purchase Includes:</h6>
+                  <div class="item">
+                    <div class="top">
+                      <span class="title">{{- block.settings.line_one -}}</span>
+                      <span>
+                        <p>
+                          {{- block.settings.line_price_one | money -}}
+                          <span></span>
+                        </p>
+                        &nbsp;
+                        <b>FREE</b>
+                      </span>
                     </div>
-                    <div class="item">
-                        <div class="top">
-                            <span class="title">{{- block.settings.line_two -}}</span>
-                            <span>
-                                <p>
-                                    {{- block.settings.line_price_two | money -}}
-                                    <span></span>
-                                </p>
-                                &nbsp;
-                                <b>FREE</b>
-                            </span>
-                        </div>
-                        <p class="subTitle">{{- block.settings.line_sub_two -}}</p>
+                    <p class="subTitle">{{- block.settings.line_sub_one -}}</p>
+                  </div>
+                  <div class="item">
+                    <div class="top">
+                      <span class="title">{{- block.settings.line_two -}}</span>
+                      <span>
+                        <p>
+                          {{- block.settings.line_price_two | money -}}
+                          <span></span>
+                        </p>
+                        &nbsp;
+                        <b>FREE</b>
+                      </span>
                     </div>
-                    <div class="item">
-                        <div class="top">
-                            <span class="title">{{- block.settings.line_three -}}</span>
-                            <span>
-                                <p>
-                                    {{- block.settings.line_price_three | money -}}
-                                    <span></span>
-                                </p>
-                                &nbsp;
-                                <b>FREE</b>
-                            </span>
-                        </div>
-                        <p class="subTitle">{{- block.settings.line_sub_three -}}</p>
+                    <p class="subTitle">{{- block.settings.line_sub_two -}}</p>
+                  </div>
+                  <div class="item">
+                    <div class="top">
+                      <span class="title">{{- block.settings.line_three -}}</span>
+                      <span>
+                        <p>
+                          {{- block.settings.line_price_three | money -}}
+                          <span></span>
+                        </p>
+                        &nbsp;
+                        <b>FREE</b>
+                      </span>
                     </div>
-                    <div class="item total">
-                        <div class="top">
-                            <span class="title">Total</span>
-                            <span>
-                                <p>
-                                    {{- block.settings.total_value | money -}}
-                                    <span></span>
-                                </p>
-                                &nbsp;
-                                {{- block.settings.product_price -}}
-                            </span>
-                        </div>
+                    <p class="subTitle">{{- block.settings.line_sub_three -}}</p>
+                  </div>
+                  <div class="item total">
+                    <div class="top">
+                      <span class="title">Total</span>
+                      <span>
+                        <p>
+                          {{- block.settings.total_value | money -}}
+                          <span></span>
+                        </p>
+                        &nbsp;
+                        {{- block.settings.product_price -}}
+                      </span>
                     </div>
+                  </div>
                 </div>
               {%- when 'title' -%}
-                <h2 class="image-with-text__heading inline-richtext h1" style="text-align: center; margin-bottom: 2rem;">
+                <h2
+                  class="image-with-text__heading inline-richtext h1"
+                  style="text-align: center; margin-bottom: 2rem;"
+                >
                   {{ block.settings.header_title }}
                 </h2>
                 <h4 class="product__title h2" {{ block.shopify_attributes }}>
                   {{ block.settings.header_subtitle }}
                 </h4>
               {%- when 'button' -%}
-                {%- if block.settings.learn_more  != blank -%}
+                {%- if block.settings.learn_more != blank -%}
                   <a
                     {% if block.settings.learn_more == blank %}
                       role="link" aria-disabled="true"
@@ -274,8 +287,6 @@
   <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}
 
-
-
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     function isIE() {
@@ -307,10 +318,7 @@
   "tag": "section",
   "class": "section section-featured-product",
   "disabled_on": {
-    "groups": [
-      "header",
-      "footer"
-    ]
+    "groups": ["header", "footer"]
   },
   "blocks": [
     {
@@ -350,13 +358,13 @@
         {
           "type": "inline_richtext",
           "id": "line_two",
-          "default": "Text block",
+          "default": "Line Item Two - Title",
           "label": "Line Item Two - Title"
         },
         {
           "type": "inline_richtext",
           "id": "line_sub_two",
-          "default": "Text block",
+          "default": "Line Item Two - Details",
           "label": "Line Item Two - Details"
         },
         {
@@ -368,13 +376,13 @@
         {
           "type": "inline_richtext",
           "id": "line_three",
-          "default": "Text block",
+          "default": "Line Item Three - Title",
           "label": "Line Item Three - Title"
         },
         {
           "type": "inline_richtext",
           "id": "line_sub_three",
-          "default": "Text block",
+          "default": "Line Item Three - Details",
           "label": "Line Item Three - Details"
         },
         {
@@ -434,7 +442,7 @@
           "id": "learn_more",
           "label": "Learn More link"
         }
-      ] 
+      ]
     },
     {
       "type": "custom_liquid",
