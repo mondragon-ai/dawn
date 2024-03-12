@@ -531,7 +531,7 @@
 .benefits-img ul li p {
   list-style: none;
   height: auto;
-  color: var(--main-p-color);
+  color: #6b7280;
   font-size: 10px;
   font-weight: 300;
   line-height: 18px;
@@ -548,9 +548,18 @@
   color: #000;
 }
 
+.benefits-img ul li:hover,
+.benefits-img ul li:hover p {
+  color: #4a4a4a;
+}
+
 .benefits-img ul li p {
   margin: 0;
   padding: 0;
+}
+
+.ben-img {
+  display: none;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 767px) {

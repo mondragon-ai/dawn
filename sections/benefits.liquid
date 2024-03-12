@@ -38,7 +38,13 @@
             {%- for block in section.blocks -%}
               {% case block.type %}
                 {%- when 'text' -%}
-                  <img id="{{ block.id }}" src="{{ block.settings.image | image_url }}" height="" width="">
+                  <img
+                    id="{{ block.id }}"
+                    src="{{ block.settings.image | image_url }}"
+                    height=""
+                    width=""
+                    class="ben-img"
+                  >
               {%- endcase -%}
             {% endfor %}
           </div>
@@ -60,6 +66,36 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    // Get all <li> elements
+    var listItems = document.querySelectorAll('.benefits-img ul li');
+
+    // Iterate over each <li> element
+    listItems.forEach(function (item) {
+      // Get the corresponding image element by ID
+      var imageId = item.getAttribute('id');
+      var correspondingImage = document.getElementById(imageId);
+
+      // Add mouseenter event listener to <li> element
+      item.addEventListener('mouseenter', function () {
+        // Hide the main image
+        document.querySelector('.benefits-img img').style.display = 'none';
+        // Show the corresponding image
+        correspondingImage.style.display = 'block';
+      });
+
+      // Add mouseleave event listener to <li> element
+      item.addEventListener('mouseleave', function () {
+        // Show the main image
+        document.querySelector('.benefits-img img').style.display = 'block';
+        // Hide the corresponding image
+        correspondingImage.style.display = 'none';
+      });
+    });
+  });
+</script>
 
 {% schema %}
 {
