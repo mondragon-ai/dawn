@@ -10,17 +10,345 @@
   Usage:
   {% render 'buy-buttons', block: block, product: product, product_form_id: product_form_id, section_id: section.id, show_pickup_availability: true %}
 {% endcomment %}
+
+<style>
+  /* ========================================================================================== */
+  /* 1. CUSTOM BTN                                                                             */
+  /* ========================================================================================== */
+
+  .btnWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0rem;
+    padding: 0rem;
+    height: auto;
+    width: 100%;
+    background: white;
+  }
+
+  .btnWrapper h6 {
+    width: 100%;
+    color: #00562b;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 22px;
+    font-weight: 600;
+    text-align: left;
+    margin: 0;
+  }
+
+  .txtContainer {
+    padding: 0;
+  }
+
+  .txtContainer h4,
+  .txtContainer p {
+    padding: 1rem;
+  }
+
+  .txtContainer h4 {
+    margin: 0 !important;
+  }
+
+  .txtContainer .reviews {
+    color: #00562b;
+    fill: #00562b;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0rem;
+    padding: 1rem;
+    height: auto;
+    width: 100%;
+  }
+
+  .btnContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0rem;
+    padding: 0rem;
+    height: auto;
+    width: 100%;
+    background: white;
+    border: 1px solid #333;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    cursor: pointer;
+    pointer-events: all;
+  }
+  /* 
+.btnContainer:nth-child(2) {
+  border: 1px solid #c7c7c73b;
+} */
+
+  .btnContainer > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0rem;
+    padding: 1rem;
+    height: auto;
+    width: 100%;
+  }
+
+  .btnContainer > div .hdrContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin: 0rem;
+    padding: 0rem;
+    height: auto;
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .btnContainer:nth-child(2) > div .hdrContainer {
+    margin-bottom: 0rem;
+  }
+
+  .btnContainer > div .hdrContainer > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0rem;
+    padding: 0rem;
+    height: auto;
+    width: 100%;
+  }
+
+  /* .btnContainer:nth-child(2) > div .hdrContainer h6 {
+  color: #33333342;
+} */
+
+  .btnContainer > div .hdrContainer > div > div {
+    width: 25px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #00562b;
+    border: 1px solid rgb(208 208 208);
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .btnContainer > div .hdrContainer > div > div svg {
+    height: 0.7rem;
+  }
+
+  .btnContainer > div .hdrContainer > .price {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+    margin: 0rem;
+    padding: 0rem;
+    height: auto;
+    width: 100%;
+  }
+
+  .btnContainer > div .hdrContainer > .price > span {
+    width: auto;
+    color: #6b7280;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 22px;
+    font-weight: 400;
+    text-align: left;
+    margin: 0;
+    position: relative;
+  }
+
+  /* .btnContainer:nth-child(2) > div .hdrContainer > .price > span {
+  color: #00562b5e !important;
+  font-weight: 500;
+} */
+
+  .btnContainer > div .hdrContainer > .price > span > span {
+    width: 110%;
+    position: absolute;
+    background-color: #333;
+    height: 1px;
+    left: -5px;
+    top: 10px;
+    transform: rotate(5deg);
+  }
+
+  .btnContainer > div span {
+    width: 100%;
+    width: auto;
+    color: #0a0a0a;
+    font-size: 18px;
+    font-weight: 100;
+    line-height: 22px;
+    font-weight: 400;
+    text-align: left;
+    margin: 0;
+    position: relative;
+  }
+
+  .btnContainer > div ul {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 0rem;
+    padding: 0rem;
+    height: auto;
+    width: 100%;
+  }
+
+  .btnContainer > div ul li {
+    list-style: none;
+    width: 100%;
+    width: auto;
+    color: #6b7280;
+    font-size: 10px;
+    font-weight: 100;
+    line-height: 18px;
+    font-weight: 200;
+    text-align: left;
+    margin: 5px 0;
+    position: relative;
+  }
+
+  .btnContainer > div ul li svg,
+  .btnContainer > div ul li svg path {
+    color: #6b728040;
+    fill: #6b728040;
+  }
+
+  .faqContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    background: white;
+  }
+
+  .faqContainer strong {
+    color: #00562b;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  .buyBtn > div {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 1rem;
+  }
+
+  .buyBtn > div img {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+  }
+
+  .imgContainer svg {
+    display: none;
+  }
+  .mainButton {
+    background: #00562b;
+    padding: 14px 20px;
+    color: #eeecec;
+    border: none;
+    border-radius: 50px;
+    width: max-content;
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: 300;
+    min-height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    flex-direction: row;
+    cursor: pointer;
+    pointer-events: all;
+    border: 1px solid #00562b;
+    transition: background 0.3s;
+    width: 100%;
+  }
+
+  .mainButton svg {
+    margin-left: 1.5rem;
+    transform: translateX(0%);
+    transition: transform 0.3s;
+  }
+
+  .mainButton:hover {
+    background: white;
+    padding: 14px 20px;
+    color: #00562b !important;
+    border: 1px solid #00562b;
+  }
+
+  .mainButton:hover svg {
+    transition: transform 0.3s;
+    transform: translateX(5px);
+  }
+
+  @media screen and (min-width: 720px) {
+    .rightside {
+      position: relative;
+      width: 50%;
+    }
+
+    .imgContainer {
+      padding: 1rem;
+      width: 50%;
+      position: relative;
+    }
+
+    .imgContainer > img {
+      width: 80%;
+      min-height: 375px;
+    }
+
+    .imgContainer > ul {
+      width: 80%;
+    }
+
+    .imgContainer > ul img {
+      min-height: 120px;
+    }
+
+    .faqContainer,
+    .txtContainer {
+      padding: 2rem 3rem;
+    }
+
+    .rightside > svg {
+      display: flex;
+      position: absolute;
+      transform: rotate(270deg);
+      top: 39%;
+      right: 19rem;
+      height: auto;
+      width: 76vw;
+    }
+  }
+</style>
+
 <div {{ block.shopify_attributes }}>
   {%- if product != blank -%}
     {%- liquid
       assign gift_card_recipient_feature_active = false
       if block.settings.show_gift_card_recipient and product.gift_card?
         assign gift_card_recipient_feature_active = true
-      endif
-
-      assign show_dynamic_checkout = false
-      if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
-        assign show_dynamic_checkout = true
       endif
     -%}
 
@@ -44,6 +372,10 @@
         <span class="product-form__error-message"></span>
       </div>
 
+      {{ block.settings.best_deal.price | money }}
+      {{ product.compare_at_price }}
+      {{ product.selling_plan_groups.size }}
+
       {%- form 'product',
         product,
         id: product_form_id,
@@ -65,37 +397,125 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
-        <div class="product-form__buttons">
-          {%- liquid
-            assign check_against_inventory = true
-            if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
-              assign check_against_inventory = false
-            endif
-            if product.selected_or_first_available_variant.quantity_rule.min > product.selected_or_first_available_variant.inventory_quantity and check_against_inventory
-              assign quantity_rule_soldout = true
-            endif
-          -%}
-          <button
-            id="ProductSubmitButton-{{ section_id }}"
-            type="submit"
-            name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %}"
-            {% if product.selected_or_first_available_variant.available == false or quantity_rule_soldout %}
-              disabled
-            {% endif %}
-          >
-            <span>
-              {%- if product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
-                {{ 'products.product.sold_out' | t }}
-              {%- else -%}
-                {{ 'products.product.add_to_cart' | t }}
-              {%- endif -%}
-            </span>
-            {%- render 'loading-spinner' -%}
-          </button>
-          {%- if show_dynamic_checkout -%}
-            {{ form | payment_button }}
-          {%- endif -%}
+        <div class="btnWrapper">
+          <div class="btnContainer">
+            {% assign product0_background = '#c4e7bc' %}
+            <div
+              style="border-bottom: 1px solid black; background: {{ product0_background }}; border-top-left-radius: 15px; border-top-right-radius: 15px;"
+              onclick="handleClick(0)"
+            >
+              <div class="hdrContainer">
+                <div style="width: 100%;">
+                  <div style="background: white">
+                    <span class="fa fa-check" style="margin-left: 1px;"></span>
+                  </div>
+                  <h6>Best Deal</h6>
+                </div>
+                <div class="price">
+                  <span style="margin-right: 0.5rem;">
+                    {{ block.settings.best_deal.compare_at_price | money }}
+                    <span></span>
+                  </span>
+                  <span style="color: #00562b; font-weight: 500;">
+                    {{- block.settings.best_deal.price | money -}}
+                  </span>
+                </div>
+              </div>
+              <span> {{ block.settings.best_deal_sub }}</span>
+              <ul>
+                {% if block.settings.best_deal_inc_1 != blank %}
+                  <li>
+                    {% render 'icon-accordion', icon: 'check_mark' -%}
+                    {{- block.settings.best_deal_inc_1 }}
+                  </li>
+                {% endif %}
+                {% if block.settings.best_deal_inc_2 != blank %}
+                  <li>
+                    {% render 'icon-accordion', icon: 'check_mark' -%}
+                    {{- block.settings.best_deal_inc_2 }}
+                  </li>
+                {% endif %}
+                {% if block.settings.best_deal_inc_3 != blank %}
+                  <li>
+                    {% render 'icon-accordion', icon: 'check_mark' -%}
+                    {{- block.settings.best_deal_inc_3 }}
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+
+            {% assign product1_background = '#c4e7bc' %}
+            <div
+              style="background: {{ product1_background }}; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;"
+              onclick="handleClick(1)"
+            >
+              <div class="hdrContainer">
+                <div style="width: 100%;">
+                  <div style="background: white">
+                    <span class="fa fa-check" style="margin-left: 1px;"></span>
+                  </div>
+                  <h6>Most Popular</h6>
+                </div>
+                <div class="price">
+                  <span style="margin-right: 0.5rem;">
+                    {{ block.settings.most_popular.compare_at_price | money }}
+                    <span></span>
+                  </span>
+                  <span style="color: #00562b; font-weight: 500;">
+                    {{- block.settings.most_popular.price | money -}}
+                  </span>
+                </div>
+              </div>
+              <span>{{ block.settings.most_popular_sub }}</span>
+              <ul>
+                {% if block.settings.most_popular_inc_1 != blank %}
+                  <li>
+                    {% render 'icon-accordion', icon: 'check_mark' -%}
+                    {{- block.settings.most_popular_inc_1 }}
+                  </li>
+                {% endif %}
+                {% if block.settings.most_popular_inc_2 != blank %}
+                  <li>
+                    {% render 'icon-accordion', icon: 'check_mark' -%}
+                    {{- block.settings.most_popular_inc_2 }}
+                  </li>
+                {% endif %}
+                {% if block.settings.most_popular_inc_3 != blank %}
+                  <li>
+                    {% render 'icon-accordion', icon: 'check_mark' -%}
+                    {{- block.settings.most_popular_inc_3 }}
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+
+          <div class="btnContainer">
+            <div onclick="handleClick(2)">
+              <div class="hdrContainer">
+                <div style="width: 100%;">
+                  <div style="background: white">
+                    <span class="fa fa-check" style="margin-left: 1px;"></span>
+                  </div>
+                  <h6>Try Once</h6>
+                </div>
+                <div class="price">
+                  <span style="margin-right: 0.5rem;"><span></span></span>
+                  <span style="font-weight: 500;">$79.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="buyBtn">
+          <a class="mainButton"> BUY NOW <span class="fa fa-long-arrow-right"></span> </a>
+          <div>
+            {% comment %}
+              {% for image in section.settings.seal_images %}
+                <img src="{{ image | img_url }}" alt="" width="" height="">
+              {% endfor %}
+            {% endcomment %}
+          </div>
         </div>
       {%- endform -%}
     </product-form>

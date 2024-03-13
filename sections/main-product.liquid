@@ -449,7 +449,7 @@
                   {{- block.settings.text -}}
                 </a>
               {%- when 'share' -%}
-                {% liquid 
+                {% liquid
                   assign share_url = product.selected_variant.url | default: product.url | prepend: request.origin
                   render 'share-button', block: block, share_link: share_url
                 %}
@@ -775,6 +775,87 @@
   </div>
 </section>
 
+<script>
+  ttq.track('CompletePayment', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+  });
+  ttq.track('ViewContent', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+  });
+  ttq.track('AddToCart', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+  });
+  ttq.track('PlaceAnOrder', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+  });
+  ttq.track('InitiateCheckout', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+  });
+  ttq.track('Search', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+    query: '<search_keywords>', // string. The word or phrase used to search. Example: "SAVE10COUPON".
+  });
+  ttq.track('Pageview', {
+    value: '<content_value>', // number. Value of the order or items sold. Example: 100.
+    currency: '<content_currency>', // string. The 4217 currency code. Example: "USD".
+    contents: [
+      {
+        content_id: '<content_identifier>', // string. ID of the product. Example: "1077218".
+        content_type: '<content_type>', // string. Either product or product_group.
+        content_name: '<content_name>', // string. The name of the page or product. Example: "shirt".
+      },
+    ],
+  });
+</script>
+
 {% schema %}
 {
   "name": "t:sections.main-product.name",
@@ -952,17 +1033,78 @@
       "settings": [
         {
           "type": "checkbox",
-          "id": "show_dynamic_checkout",
-          "default": true,
-          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-        },
-        {
-          "type": "checkbox",
           "id": "show_gift_card_recipient",
           "default": true,
           "label": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.label",
           "info": "t:sections.main-product.blocks.buy_buttons.settings.show_gift_card_recipient.info"
+        },
+        {
+          "type": "header",
+          "content": "Choose Best Deal",
+          "info": "Select the product that will be used as the best deal offer for customers. Make sure to add 'Compare At Price' for the single variant"
+        },
+        {
+          "type": "product",
+          "id": "best_deal",
+          "label": "Best Deal"
+        },
+        {
+          "type": "text",
+          "id": "best_deal_sub",
+          "label": "Sub Title",
+          "default": "60% off - Couple Pack"
+        },
+        {
+          "type": "text",
+          "id": "best_deal_inc_1",
+          "label": "Includes One",
+          "default": "60 Servings Shipped Monthly, Pause or Cancel Anytime"
+        },
+        {
+          "type": "text",
+          "id": "best_deal_inc_2",
+          "label": "Includes Two",
+          "default": "Free Welcome Kit + Year Supply of Vitamin D3+K2"
+        },
+        {
+          "type": "text",
+          "id": "best_deal_inc_3",
+          "label": "Includes Three",
+          "default": "90-Day Money Back Guarantee"
+        },
+        {
+          "type": "header",
+          "content": "Choose Most Popular",
+          "info": "Select the product that will be used as the most popular offer for customers. Make sure to add 'Compare At Price' for the single variant"
+        },
+        {
+          "type": "product",
+          "id": "most_popular",
+          "label": "Most Popular"
+        },
+        {
+          "type": "text",
+          "id": "most_popular_sub",
+          "label": "Sub Title",
+          "default": "30% off - Monthly Supply"
+        },
+        {
+          "type": "text",
+          "id": "most_popular_inc_1",
+          "label": "Includes One",
+          "default": " 30 Servings Shipped Monthly, Pause or Cancel Anytime"
+        },
+        {
+          "type": "text",
+          "id": "most_popular_inc_2",
+          "label": "Includes Two",
+          "default": " Free Welcome Kit: Canister, Shaker, 5 Travel Packs"
+        },
+        {
+          "type": "text",
+          "id": "most_popular_inc_3",
+          "label": "Includes Three",
+          "default": "90-Day Money Back Guarantee"
         }
       ]
     },
