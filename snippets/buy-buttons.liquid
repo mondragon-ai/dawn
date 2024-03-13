@@ -372,10 +372,6 @@
         <span class="product-form__error-message"></span>
       </div>
 
-      {{ block.settings.best_deal.price | money }}
-      {{ product.compare_at_price }}
-      {{ product.selling_plan_groups.size }}
-
       {%- form 'product',
         product,
         id: product_form_id,
