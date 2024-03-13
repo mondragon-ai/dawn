@@ -1496,3 +1496,32 @@ a.product__text {
     border: none;
   }
 }
+
+
+.svg-divider {
+  width: 100vw;
+  min-width: 100vw;
+  position: relative;
+  height: 7vh;
+}
+
+.svg-divider svg {
+  width: 100vw; min-width: 100vw;    position: absolute;
+  bottom: 0;
+  left: -15px;
+}
+
+@media screen and (min-width: 720px) {
+  .svg-divider {
+    width: 100vw;
+    min-width: 100vw;
+    position: relative;
+    height: 30vh;
+  }
+  
+  .svg-divider svg {
+    width: 100vw; min-width: 100vw;    position: absolute;
+    bottom: 0;
+    left: -10%;
+  }
+}
