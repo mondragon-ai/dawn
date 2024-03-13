@@ -192,6 +192,8 @@
     }
   },
   "order": [
-    "main"
+    "main",
+    "image-with-text",
+    "multicolumn"
   ]
 }
