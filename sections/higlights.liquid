@@ -46,7 +46,7 @@
       <div class="selectWrapperDT">
         <div>
           {%- for block in section.blocks -%}
-            <p id="{{ block.id }}">{{ block.settings.category }}</p>
+            <p id="{{ block.id }}" class="category">{{ block.settings.category }}</p>
           {% endfor %}
         </div>
       </div>
@@ -65,7 +65,7 @@
             {% capture image_id %}image_{{ i }}{% endcapture %}
             {% capture description_id %}description_{{ i }}{% endcapture %}
             {% if block.settings[image_id] != blank %}
-              <div class="item">
+              <div class="item {{ block.id }}">
                 <img src="{{ block.settings[image_id] | image_url }}" alt="" width="" height="">
                 <h4>{{ block.settings[title_id] }}</h4>
                 <p>{{ block.settings[description_id] }}</p>
@@ -77,6 +77,31 @@
     </div>
   </div>
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const categoryParagraphs = document.querySelectorAll('.category');
+
+    if (categoryParagraphs.length > 0) {
+      const categoryId = categoryParagraphs[0].id;
+      const items = document.querySelectorAll('.item');
+
+      items.forEach(function (item) {
+        item.style.display = item.classList.contains(categoryId) ? 'block' : 'none';
+      });
+    }
+
+    categoryParagraphs.forEach(function (paragraph) {
+      paragraph.addEventListener('click', function () {
+        const categoryId = this.id;
+        const items = document.querySelectorAll('.item');
+
+        items.forEach(function (item) {
+          item.style.display = item.classList.contains(categoryId) ? 'block' : 'none';
+        });
+      });
+    });
+  });
+</script>
 
 {% schema %}
 {

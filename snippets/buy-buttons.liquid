@@ -398,12 +398,26 @@
             {% assign product0_background = '#c4e7bc' %}
             <div
               style="border-bottom: 1px solid black; background: {{ product0_background }}; border-top-left-radius: 15px; border-top-right-radius: 15px;"
-              onclick="handleClick(0)"
+              id="sub_offer_one"
+              data-product-id="{{ block.settings.best_deal.selected_or_first_available_variant.id }}"
+              data-product-selling-plan="{{ block.settings.best_deal.selected_or_first_available_selling_plan_allocation.selling_plan.id }}"
             >
               <div class="hdrContainer">
                 <div style="width: 100%;">
-                  <div style="background: white">
-                    <span class="fa fa-check" style="margin-left: 1px;"></span>
+                  <div style="background: #00562b" id="sub_offer_one_check">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="check"
+                      class="svg-inline--fa fa-check "
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      style="margin-left:1px"
+                    >
+                      <path fill="white" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path>
+                    </svg>
                   </div>
                   <h6>Best Deal</h6>
                 </div>
@@ -440,15 +454,30 @@
               </ul>
             </div>
 
-            {% assign product1_background = '#c4e7bc' %}
+            {% assign product1_background = 'white' %}
             <div
               style="background: {{ product1_background }}; border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;"
-              onclick="handleClick(1)"
+              id="sub_offer_two"
+              data-product-id="{{ block.settings.most_popular.selected_or_first_available_variant.id }}"
+              data-product-selling-plan="{{ block.settings.most_popular.selected_or_first_available_selling_plan_allocation.selling_plan.id }}"
             >
+              {{ product.selected_or_first_available_selling_plan_allocation.selling_plan.id }}
               <div class="hdrContainer">
                 <div style="width: 100%;">
-                  <div style="background: white">
-                    <span class="fa fa-check" style="margin-left: 1px;"></span>
+                  <div style="background: white" id="sub_offer_two_check">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="check"
+                      class="svg-inline--fa fa-check "
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      style="margin-left:1px"
+                    >
+                      <path fill="white" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path>
+                    </svg>
                   </div>
                   <h6>Most Popular</h6>
                 </div>
@@ -487,11 +516,27 @@
           </div>
 
           <div class="btnContainer">
-            <div onclick="handleClick(2)">
+            <div
+              id="non_sub"
+              data-product-id="{{ product.selected_or_first_available_variant.id }}"
+              data-product-selling-plan=""
+            >
               <div class="hdrContainer">
                 <div style="width: 100%;">
-                  <div style="background: white">
-                    <span class="fa fa-check" style="margin-left: 1px;"></span>
+                  <div style="background: white" id="non_sub_check">
+                    <svg
+                      aria-hidden="true"
+                      focusable="false"
+                      data-prefix="fas"
+                      data-icon="check"
+                      class="svg-inline--fa fa-check "
+                      role="img"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 448 512"
+                      style="margin-left:1px"
+                    >
+                      <path fill="white" d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"></path>
+                    </svg>
                   </div>
                   <h6>Try Once</h6>
                 </div>
@@ -504,7 +549,13 @@
           </div>
         </div>
         <div class="buyBtn">
-          <a class="mainButton"> BUY NOW <span class="fa fa-long-arrow-right"></span> </a>
+          <a
+            id="checkout_btn"
+            href=""
+            class="mainButton"
+          >
+            BUY NOW <span class="fa fa-long-arrow-right"></span>
+          </a>
           <div>
             {% comment %}
               {% for image in section.settings.seal_images %}
@@ -563,3 +614,80 @@
     <script src="{{ 'pickup-availability.js' | asset_url }}" defer="defer"></script>
   {%- endif -%}
 </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    let sub_offer_one = document.getElementById('sub_offer_one');
+    let sub_offer_two = document.getElementById('sub_offer_two');
+    let non_sub = document.getElementById('non_sub');
+
+    sub_offer_one.addEventListener('click', function () {
+      let non_sub_check = document.getElementById('non_sub_check');
+      non_sub_check.style.background = 'white';
+      let sub_offer_one_check = document.getElementById('sub_offer_one_check');
+      sub_offer_one_check.style.background = '#00562b';
+      let sub_offer_two_check = document.getElementById('sub_offer_two_check');
+      sub_offer_two_check.style.background = 'white';
+
+      this.style.background = '#c4e7bc';
+      sub_offer_two.style.background = 'white';
+
+      // Retrieve the product variant ID
+      let variant_id = this.getAttribute('data-product-id');
+      let selling_plan = this.getAttribute('data-product-selling-plan');
+      if (selling_plan == '' || !selling_plan) {
+        let checkout_btn = document.getElementById('checkout_btn');
+        checkout_btn.href = `https://{{shop.domain}}/cart/clear?return_to=/cart/add?items[][id]=${variant_id}%26items[][quantity]=1%26return_to=/checkout`;
+      } else {
+        let checkout_btn = document.getElementById('checkout_btn');
+        checkout_btn.href = `https://{{shop.domain}}/cart/clear?return_to=/cart/add?items[][id]=${variant_id}%26items[][quantity]=1%26items[][selling_plan]=${selling_plan}%26return_to=/checkout`;
+      }
+    });
+
+    sub_offer_two.addEventListener('click', function () {
+      let non_sub_check = document.getElementById('non_sub_check');
+      non_sub_check.style.background = 'white';
+      let sub_offer_two_check = document.getElementById('sub_offer_two_check');
+      sub_offer_two_check.style.background = '#00562b';
+      let sub_offer_one_check = document.getElementById('sub_offer_one_check');
+      sub_offer_one_check.style.background = 'white';
+
+      this.style.background = '#c4e7bc';
+      sub_offer_one.style.background = 'white';
+
+      // Retrieve the product variant ID
+      let variant_id = this.getAttribute('data-product-id');
+      let selling_plan = this.getAttribute('data-product-selling-plan');
+      if (selling_plan == '' || !selling_plan) {
+        let checkout_btn = document.getElementById('checkout_btn');
+        checkout_btn.href = `https://{{shop.domain}}/cart/clear?return_to=/cart/add?items[][id]=${variant_id}%26items[][quantity]=1%26return_to=/checkout`;
+      } else {
+        let checkout_btn = document.getElementById('checkout_btn');
+        checkout_btn.href = `https://{{shop.domain}}/cart/clear?return_to=/cart/add?items[][id]=${variant_id}%26items[][quantity]=1%26items[][selling_plan]=${selling_plan}%26return_to=/checkout`;
+      }
+    });
+
+    non_sub.addEventListener('click', function () {
+      let non_sub_check = document.getElementById('non_sub_check');
+      non_sub_check.style.background = '#00562b';
+      let sub_offer_one_check = document.getElementById('sub_offer_one_check');
+      sub_offer_one_check.style.background = 'white';
+      let sub_offer_two_check = document.getElementById('sub_offer_two_check');
+      sub_offer_two_check.style.background = 'white';
+
+      sub_offer_one.style.background = 'white';
+      sub_offer_two.style.background = 'white';
+
+      // Retrieve the product variant ID
+      let variant_id = this.getAttribute('data-product-id');
+      let selling_plan = this.getAttribute('data-product-selling-plan');
+      if (selling_plan == '' || !selling_plan) {
+        let checkout_btn = document.getElementById('checkout_btn');
+        checkout_btn.href = `https://{{shop.domain}}/cart/clear?return_to=/cart/add?items[][id]=${variant_id}%26items[][quantity]=1%26return_to=/checkout`;
+      } else {
+        let checkout_btn = document.getElementById('checkout_btn');
+        checkout_btn.href = `https://{{shop.domain}}/cart/clear?return_to=/cart/add?items[][id]=${variant_id}%26items[][quantity]=1%26items[][selling_plan]=${selling_plan}%26return_to=/checkout`;
+      }
+    });
+  });
+</script>
