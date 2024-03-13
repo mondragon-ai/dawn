@@ -247,7 +247,7 @@
 
  .txtContainer h4 {
   width: 100%;
-  color: var(--main-btn-bk);
+  color: #00562b;
   font-size: 25px;
   font-weight: 100;
   line-height: 28px;
@@ -259,7 +259,7 @@
 
  .txtContainer p {
   width: 100%;
-  color: var(--main-btn-bk);
+  color: #00562b;
   font-size: 15px;
   font-weight: 100;
   line-height: 28px;
@@ -280,7 +280,7 @@
 
  .txtContainer span span {
   width: auto;
-  color: var(--main-btn-bk);
+  color: #00562b;
   font-size: 15px;
   font-weight: 100;
   line-height: 28px;
@@ -294,7 +294,7 @@
 
  .txtContainer span svg {
   width: auto;
-  color: var(--main-btn-bk);
+  color: #00562b;
   font-size: 15px;
   font-weight: 100;
   line-height: 28px;
@@ -320,7 +320,7 @@
 }
 
 
-.ingredientsWrapper .ingredients {
+.ingredients {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -334,7 +334,7 @@
   position: relative;
 }
 
-.ingredientsWrapper .ingredients .item {
+.ingredients .item {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -346,11 +346,11 @@
   background: white;
   position: relative;
   border-radius: 15px;
-  box-shadow: var(--main-box-shadow);
+  box-shadow: 0px 0px 5px 1px #d9d9d9;;
   margin-bottom: 1rem;
 }
 
-.ingredientsWrapper .ingredients .item img {
+.ingredients .item img {
   width: 100%;
   height: auto;
   max-height: fit-content;
@@ -361,8 +361,8 @@
   border-top-left-radius: 15px;
 }
 
-.ingredientsWrapper .ingredients .item h4,
-.ingredientsWrapper .ingredients .item p {
+.ingredients .item h4,
+.ingredients .item p {
   width: 100%;
   height: auto;
   color: var(--main-p-color);
@@ -374,8 +374,8 @@
   padding: 1rem;
 }
 
-.ingredientsWrapper .ingredients .item h4 {
-  color: var(--main-btn-bk);
+.ingredients .item h4 {
+  color: #00562b;
   font-size: 25px;
   font-weight: 500;
   line-height: 28px;
@@ -400,14 +400,14 @@
       width: 60%;
   }
 
-  .ingredientsWrapper .ingredients {
+  .ingredients {
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: space-around;
   }
 
-  .ingredientsWrapper .ingredients .item {
+  .ingredients .item {
       height: 100%;
       width: 18%;
       margin-bottom: 1rem;
@@ -417,7 +417,7 @@
       min-height: 500px;
   }
 
-  .ingredientsWrapper .ingredients .item img {
+  .ingredients .item img {
       width: 100%;
       height: auto;
       min-height: 250px;
@@ -428,3 +428,114 @@
   }
 }
 
+/* ========================================================================================== */
+/* 2. SELECT                                                                                  */
+/* ========================================================================================== */
+.selectWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  margin: 0rem;
+  padding: 1rem;
+  height: 100%;
+  width: 100%;
+  background-image: transparent;
+  background: transparent;
+  position: relative;
+}
+
+.selectWrapper > div, 
+.selectWrapper article {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0rem;
+  padding: 0rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  background: white;
+  box-shadow: 0px 0px 5px 1px #d9d9d9;
+  border: 1px solid rgba(0, 0, 0, 0.069);
+  color: #00562b;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.selectWrapper article {
+  padding: 1rem;
+  position: relative;
+}
+
+.selectWrapper > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: absolute;
+  z-index: 100;
+  width: 91%;
+  background: white;
+  top: 85px;
+  height: auto;
+}
+
+.selectWrapper > div p {
+  margin:  0 0 0.5rem 0;
+  padding: 1rem;
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.096);
+}
+
+.selectWrapper > div p:last-child {
+  margin:  0 0 0rem 0;
+  border-bottom: 1px solid transparent
+}
+
+@media screen and (min-width: 720px) {
+  .selectWrapperDT {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
+      margin: 0rem;
+      padding: 1rem;
+      height: 100%;
+      width: 100%;
+      background-image: transparent;
+      background: transparent;
+      position: relative;
+  }
+  
+  .selectWrapperDT > div {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      margin: 0rem;
+      padding: 0rem;
+      height: 100%;
+      width: 100%;
+      border-radius: 15px;
+      margin-bottom: 1rem;
+      color: #00562b;
+      cursor: pointer;
+      pointer-events: all;
+      flex-wrap: wrap;
+  }
+  
+  .selectWrapperDT > div p {
+      margin:  0 0 0.5rem 0;
+      padding: 1rem;
+      width: auto;
+      box-shadow: 0px 0px 5px 1px #d9d9d9;
+      background: white;
+      border-radius: 15px;
+      border-bottom: none;
+      margin-right: 0.5rem;
+  }
+  
+}
