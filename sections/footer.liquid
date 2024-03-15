@@ -164,6 +164,9 @@
                               </h3>
                             {%- endif -%}
                           {%- endform -%}
+                          {%- if section.settings.show_social and has_social_icons -%}
+                            {%- render 'social-icons', class: 'footer__list-social' -%}
+                          {%- endif -%}
                         </div>
                       {%- endif -%}
                     </div>
@@ -188,9 +191,11 @@
             </div>
           {%- endif -%}
 
-          {%- if section.settings.show_social and has_social_icons -%}
-            {%- render 'social-icons', class: 'footer__list-social' -%}
-          {%- endif -%}
+          {% comment %}
+            {%- if section.settings.show_social and has_social_icons -%}
+              {%- render 'social-icons', class: 'footer__list-social' -%}
+            {%- endif -%}
+          {% endcomment %}
         </div>
       </div>
     {%- endunless -%}
@@ -237,9 +242,6 @@
               {%- endif -%}
               {%- if settings.brand_description != blank -%}
                 <div class="rte">{{ settings.brand_description }}</div>
-              {%- endif -%}
-              {%- if block.settings.show_social and has_social_icons -%}
-                {%- render 'social-icons', class: 'footer__list-social' -%}
               {%- endif -%}
             </div>
           </div>
