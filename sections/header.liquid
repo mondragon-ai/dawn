@@ -239,7 +239,7 @@
       
       {% comment %} {% render 'header-search', input_id: 'Search-In-Modal' %} {% endcomment %}
       <div class="headerCTA">
-        <a href="#" class="button customBtn" style="color: white; background: {{ section.settings.button_color }};" >SHOP NOW</a>
+        <a href="{{ section.settings.shop }}" class="button customBtn" style="color: white; background: {{ section.settings.button_color }};" >SHOP NOW</a>
       </div>
 
       {%- if shop.customer_accounts_enabled -%}
@@ -462,6 +462,11 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Desktop Image"
+    },
+    {
+      "type": "url",
+      "id": "shop",
+      "label": "Shop Now URL"
     },
     {
       "type": "range",

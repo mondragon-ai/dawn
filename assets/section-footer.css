@@ -149,10 +149,33 @@
   }
 }
 
+
+.footer-block__heading::before {
+  content: ""; 
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 30%; 
+  height: 1px; 
+  background-color: white; 
+}
+
+.email-header::before {
+  content: ""; 
+  position: absolute;
+  top: -15px;
+  left: 0;
+  width: 30%; 
+  height: 0px; 
+  background-color: transparent; 
+}
+
+
 .footer-block__heading {
   margin-bottom: 2rem;
   margin-top: 0;
   font-size: calc(var(--font-heading-scale) * 1.6rem);
+  position: relative;
 }
 
 @media screen and (min-width: 990px) {
